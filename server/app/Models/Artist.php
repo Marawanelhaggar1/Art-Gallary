@@ -12,4 +12,7 @@ class Artist extends Model
     protected $fillable=['name'];
 
     protected $table = 'artists';
+    public function products(){
+        return $this->hasMany(Products::class);
+    }
 }

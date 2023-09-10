@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Resources\ArtistsResource;
 use Illuminate\Http\Request;
@@ -24,6 +27,19 @@ Route::group(
         'middleware'=>'api'
     ],
     function(){
+
+        Route::group(
+        [
+             'prefix' => 'auth'
+        ],
+         function(){
+
+            Route::post('/register', 'AuthController@register');
+            Route::post('/', 'AuthController@login');
+
+         }
+    );
+
     Route::group(
         [
             'prefix' => 'settings'
@@ -59,6 +75,30 @@ Route::group(
             Route::delete('/{id}', 'ArtistController@delete');
          }
     );
+
+    Route::group(
+        [
+             'prefix' => 'products'
+        ],
+         function(){
+             Route::get('/', 'ProductsController@index');
+            Route::post('/', 'ProductsController@create');
+            Route::put('/', 'ProductsController@update');
+            Route::delete('/{id}', 'ProductsController@delete');
+         }
+    );
+
+        Route::group(
+            [
+                'prefix' => 'orders'
+            ],
+            function () {
+                Route::get('/{id}', 'OrderController@getOrder');
+                Route::post('/', 'OrderController@create');
+                Route::delete('/{id}', 'OrderController@delete');
+
+            }
+        );
 }
 
 );

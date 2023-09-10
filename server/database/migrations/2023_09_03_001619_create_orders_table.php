@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('customer_address');
             $table->string('status');
             $table->string('date')->format('Y-m-d')->nullable();
-            $table->string('customer_status');
             $table->timestamps();
 
         });
