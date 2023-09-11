@@ -11,54 +11,31 @@ class OrderController extends Controller
 {
     public function create( Request $request){
         $body = $request->all();
-        $orderDetails = [];
+        $customerDetails =$body['order'];
+        $order = Order::create($customerDetails);
+        $id = $order->id;
+        $subtotal = 0;
         $total = 0;
-        $name='';
-        $email='';
-        $phone='';
-        $address='';
-        $date='';
+        $productOrders = [];
 
+        foreach($body['order_details'] as $order){
+            $product = Products::findOrFail($order['product_id']);
+            $order['order_id'] = $id;
+            $order['price'] = $product['price'];
+            $order['discount'] = $product['discount'];
+            $subtotal = $order['price'] * $order['product_quantity'];
+            $order['final_price']=$subtotal;
 
-        foreach ($body as $b) {
-            $product = Products::findOrFail($b['product_id']);
-            $subTotal=$product['price']*$b['product_quantity'];
-            $total += $subTotal-$subTotal*$b['discount'];
-            $name=$b['customer_name'];
-            $email = $b['customer_email'];
-            $phone=$b['customer_phone'];
-            $address=$b['customer_address'];
-            $date=$b['date'];
-
-            $orderDetail = [
-                'price' => $subTotal,
-                'discount' => $b['discount'],
-                'final_price' => $total,
-                'product_quantity' => $b['product_quantity'],
-            ];
-
-            $orderDetails[] = $orderDetail;
+            $total += $subtotal;
+            $productOrders[] = $order;
+            OrderDetails::create($order);
         }
-
-        $order = Order::create([
-            'customer_name'=>$name,
-            'customer_email'=>$email,
-            'customer_phone'=>$phone,
-            'customer_address'=>$address,
-            'status'=>'pending',
-            'date'=>$date,
-        ]);
-
-        $response = [];
-
-        foreach ($orderDetails as $od) {
-            $od['order_id'] = $order->id;
-            $orderDetail = OrderDetails::create([$od]);
-            $response[] = $orderDetail;
-        }
-
-        return response()->json($response, 201);
-
+        $all = [
+            'customer_data' =>$customerDetails,
+            'data' => $productOrders,
+            'total_price' => $total,
+        ];
+        return $all;
     }
 
     public function delete($id){

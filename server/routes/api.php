@@ -35,10 +35,14 @@ Route::group(
          function(){
 
             Route::post('/register', 'AuthController@register');
-            Route::post('/', 'AuthController@login');
+            Route::post('/login', 'AuthController@login');
 
          }
     );
+
+    Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+    });
 
     Route::group(
         [
@@ -46,9 +50,9 @@ Route::group(
         ],
         function () {
             Route::get('/', 'SettingsController@index');
-            Route::post('/', 'SettingsController@create');
-            Route::put('/', 'SettingsController@update');
-            Route::delete('/{id}', 'SettingsController@delete');
+            Route::post('/', 'SettingsController@create')->middleware(['auth:sanctum']);
+            Route::put('/', 'SettingsController@update')->middleware(['auth:sanctum']);
+            Route::delete('/{id}', 'SettingsController@delete')->middleware(['auth:sanctum']);
         }
     );
 
@@ -58,9 +62,9 @@ Route::group(
         ],
          function(){
              Route::get('/', 'CategoriesController@index');
-            Route::post('/', 'CategoriesController@create');
-            Route::put('/', 'CategoriesController@update');
-            Route::delete('/{id}', 'CategoriesController@delete');
+            Route::post('/', 'CategoriesController@create')->middleware(['auth:sanctum']);
+            Route::put('/', 'CategoriesController@update')->middleware(['auth:sanctum']);
+            Route::delete('/{id}', 'CategoriesController@delete')->middleware(['auth:sanctum']);
          }
     );
 
@@ -70,9 +74,9 @@ Route::group(
         ],
          function(){
              Route::get('/', 'ArtistController@index');
-            Route::post('/', 'ArtistController@create');
-            Route::put('/', 'ArtistController@update');
-            Route::delete('/{id}', 'ArtistController@delete');
+            Route::post('/', 'ArtistController@create')->middleware(['auth:sanctum']);
+            Route::put('/', 'ArtistController@update')->middleware(['auth:sanctum']);
+            Route::delete('/{id}', 'ArtistController@delete')->middleware(['auth:sanctum']);
          }
     );
 
@@ -82,15 +86,16 @@ Route::group(
         ],
          function(){
              Route::get('/', 'ProductsController@index');
-            Route::post('/', 'ProductsController@create');
-            Route::put('/', 'ProductsController@update');
-            Route::delete('/{id}', 'ProductsController@delete');
+            Route::post('/', 'ProductsController@create')->middleware(['auth:sanctum']);
+            Route::put('/', 'ProductsController@update')->middleware(['auth:sanctum']);
+            Route::delete('/{id}', 'ProductsController@delete')->middleware(['auth:sanctum']);
          }
     );
 
         Route::group(
             [
-                'prefix' => 'orders'
+                'prefix' => 'orders',
+                'middleware' =>'auth:sanctum'
             ],
             function () {
                 Route::get('/{id}', 'OrderController@getOrder');

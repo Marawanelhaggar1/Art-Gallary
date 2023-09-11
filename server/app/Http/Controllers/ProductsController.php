@@ -14,6 +14,7 @@ class ProductsController extends Controller
         $products = Products::all();
         return ProductsResource::collection($products);
     }
+        // $products = Products::paginate(8);
 
     public function create(createProductsRequest $request){
         $product = $request->createProducts();
