@@ -1,0 +1,11 @@
+<div class="product-list">
+  <div class="product" *ngFor="let prod of products">
+    <div class="img-fluid">
+      <img [src]="prod.image" alt="product photo" />
+    </div>
+    <div class="content">
+      <p>{{ prod.name }}</p>
+      <p>{{ prod.price }}<strong>LE</strong></p>
+    </div>
+  </div>
+</div>
