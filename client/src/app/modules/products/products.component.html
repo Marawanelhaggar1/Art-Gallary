@@ -1,5 +1,10 @@
 <div class="product-list">
-  <div class="product" *ngFor="let prod of products">
+  <div
+    class="product"
+    *ngFor="let prod of products"
+    [routerLink]="['product', prod.id]"
+    (click)="(prod.id)"
+  >
     <div class="img-fluid">
       <img [src]="prod.image" alt="product photo" />
     </div>
@@ -8,4 +13,15 @@
       <p>{{ prod.price }}<strong>LE</strong></p>
     </div>
   </div>
+</div>
+
+<div class="page-numbers">
+  <button
+    type="button"
+    *ngFor="let num of page"
+    [value]="num"
+    (click)="getAllProducts(num)"
+  >
+    {{ num }}
+  </button>
 </div>

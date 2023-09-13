@@ -33,3 +33,16 @@
     }
   }
 }
+
+.page-numbers {
+  text-align: center;
+  margin: 1rem;
+
+  button {
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #173551;
+    color: #173551;
+    margin: 10px;
+  }
+}

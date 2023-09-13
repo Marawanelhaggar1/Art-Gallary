@@ -9,4 +9,10 @@ export interface ProductsModel {
   status: string;
   category_id: number;
   artist_id: number;
+
+  meta: {
+    current_page: number;
+    from: number;
+    last_page: number;
+  };
 }

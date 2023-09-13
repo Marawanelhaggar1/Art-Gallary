@@ -15,6 +15,11 @@ class CategoriesController extends Controller
         return CategoryResource::collection($categories);
     }
 
+    public function getCategoryById($id){
+        $category=Categories::find($id);
+        return new CategoryResource($category);
+    }
+
     public function create(createCategoryRequest $request){
         $category = $request->createCategory();
         return new CategoryResource($category);

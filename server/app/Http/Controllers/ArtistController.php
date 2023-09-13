@@ -15,6 +15,11 @@ class ArtistController extends Controller
         return ArtistsResource::collection($artists);
     }
 
+    public function getArtist($id){
+        $artist=Artist::find($id);
+        return new ArtistsResource($artist);
+    }
+
     public function create(createArtistRequest $request){
         $artist = $request->createArtist();
         return new ArtistsResource($artist);

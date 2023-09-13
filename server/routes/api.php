@@ -61,7 +61,8 @@ Route::group(
              'prefix' => 'categories'
         ],
          function(){
-             Route::get('/', 'CategoriesController@index');
+            Route::get('/', 'CategoriesController@index');
+            Route::get('/{id}', 'CategoriesController@getCategoryById');
             Route::post('/', 'CategoriesController@create')->middleware(['auth:sanctum']);
             Route::put('/', 'CategoriesController@update')->middleware(['auth:sanctum']);
             Route::delete('/{id}', 'CategoriesController@delete')->middleware(['auth:sanctum']);
@@ -73,7 +74,8 @@ Route::group(
              'prefix' => 'artists'
         ],
          function(){
-             Route::get('/', 'ArtistController@index');
+            Route::get('/', 'ArtistController@index');
+            Route::get('/{id}', 'ArtistController@getArtist');
             Route::post('/', 'ArtistController@create')->middleware(['auth:sanctum']);
             Route::put('/', 'ArtistController@update')->middleware(['auth:sanctum']);
             Route::delete('/{id}', 'ArtistController@delete')->middleware(['auth:sanctum']);
@@ -85,7 +87,9 @@ Route::group(
              'prefix' => 'products'
         ],
          function(){
-             Route::get('/', 'ProductsController@index');
+            Route::get('/', 'ProductsController@index');
+            Route::get('/{id}', 'ProductsController@getProductById');
+            Route::get('category/{category_id}', 'ProductsController@getProductByCategory');
             Route::post('/', 'ProductsController@create')->middleware(['auth:sanctum']);
             Route::put('/', 'ProductsController@update')->middleware(['auth:sanctum']);
             Route::delete('/{id}', 'ProductsController@delete')->middleware(['auth:sanctum']);

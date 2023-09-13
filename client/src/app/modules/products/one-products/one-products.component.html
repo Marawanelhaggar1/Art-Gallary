@@ -1,1 +1,23 @@
-<p>one-products works!</p>
+<div class="container-fluid page">
+  <div class="image">
+    <img [src]="product.image" alt="" />
+  </div>
+  <div class="content">
+    <div class="info-1">
+      <h1>{{ product.name }}</h1>
+      <h4>{{ product.price }} <strong>LE</strong></h4>
+    </div>
+    <div class="actions">
+      <button class="first-btn">Add To Cart</button>
+      <button class="second-btn">Buy It Now</button>
+    </div>
+    <div class="info-2">
+      <p>{{ product.description }}/p></p>
+      <h5>Details:</h5>
+      <ul>
+        <li>{{ categoryName }} :artwork</li>
+        <li>Designed By : {{ artistName }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

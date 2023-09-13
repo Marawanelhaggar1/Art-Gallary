@@ -9,16 +9,20 @@ import { ProductServicesService } from 'src/app/core/services/product-services.s
 })
 export class ProductsComponent {
   products: ProductsModel[] = [];
+  page: number[] = [];
   constructor(private _productsService: ProductServicesService) {}
 
   ngOnInit(): void {
-    this.getAllProducts();
+    this.getAllProducts(1);
   }
 
-  getAllProducts() {
-    return this._productsService.getAllProducts().subscribe((res) => {
+  getAllProducts(p: number) {
+    return this._productsService.getAllProducts(p).subscribe((res) => {
       this.products = res.data;
-      console.log(this.products);
+      for (let i = 1; i <= res.meta.last_page; i++) {
+        if (!this.page.includes(i)) this.page.push(i);
+      }
+      console.log(res.meta.last_page);
       return this.products;
     });
   }

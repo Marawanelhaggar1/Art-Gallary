@@ -11,10 +11,30 @@ use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
      public function index(){
-        $products = Products::all();
+        $products = Products::paginate(8);
         return ProductsResource::collection($products);
     }
         // $products = Products::paginate(8);
+
+    public function getProductById($id)
+    {
+        $product=Products::find($id);
+        return new ProductsResource($product);
+
+    }
+
+
+    public function getProductByCategory($category_id){
+        $products = Products::all();
+        $byCategory=[];
+        foreach($products as $prod) {
+           if( $prod['category_id'] == $category_id){
+            $byCategory[]=$prod;
+           } ;
+        }
+        return ProductsResource::collection($byCategory);
+    }
+
 
     public function create(createProductsRequest $request){
         $product = $request->createProducts();

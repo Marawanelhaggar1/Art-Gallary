@@ -9,9 +9,24 @@ import { Observable } from 'rxjs';
 export class ProductServicesService {
   constructor(private _http: HttpClient) {}
 
-  getAllProducts(): Observable<{ data: ProductsModel[] }> {
+  getAllProducts(
+    page: number
+  ): Observable<{ data: ProductsModel[]; meta: { last_page: number } }> {
+    return this._http.get<{
+      data: ProductsModel[];
+      meta: { last_page: number };
+    }>(`http://localhost:8000/api/products?page=${page}`);
+  }
+
+  getProductById(id: number): Observable<{ data: ProductsModel }> {
+    return this._http.get<{ data: ProductsModel }>(
+      `http://localhost:8000/api/products/${id}`
+    );
+  }
+
+  getProductByCategoryId(id: number): Observable<{ data: ProductsModel[] }> {
     return this._http.get<{ data: ProductsModel[] }>(
-      'http://localhost:8000/api/products'
+      `http://localhost:8000/api/products/category/${id}`
     );
   }
 }

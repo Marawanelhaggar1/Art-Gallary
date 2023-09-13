@@ -14,4 +14,10 @@ export class CategoryServicesService {
       'http://localhost:8000/api/categories'
     );
   }
+
+  getCategoryById(id: number): Observable<{ data: CategoriesModel }> {
+    return this._http.get<{ data: CategoriesModel }>(
+      `http://localhost:8000/api/categories/${id}`
+    );
+  }
 }

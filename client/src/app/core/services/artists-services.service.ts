@@ -13,4 +13,9 @@ export class ArtistsServicesService {
       'http://localhost:8000/api/artists'
     );
   }
+  getArtistById(id: number): Observable<{ data: ArtistsModel }> {
+    return this._http.get<{ data: ArtistsModel }>(
+      `http://localhost:8000/api/artists/${id}`
+    );
+  }
 }
