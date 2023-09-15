@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 list">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
         </li>
         <li class="nav-item">
           <a
@@ -29,19 +29,12 @@
           >
         </li>
         <li class="nav-item" *ngFor="let cat of categories">
-          <a class="nav-link" href="#">{{ cat.name }}</a>
-        </li>
-        <li class="nav-item dropdown">
-          <form>
-            <mat-form-field class="mat">
-              <mat-label>Artists</mat-label>
-              <mat-select [(ngModel)]="selectedValue" name="food">
-                <mat-option *ngFor="let art of artists" [value]="art.name">
-                  {{ art.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </form>
+          <a
+            class="nav-link"
+            [routerLink]="['products', 'category', cat.id]"
+            href="#"
+            >{{ cat.name }}</a
+          >
         </li>
       </ul>
 
@@ -54,6 +47,19 @@
         />
       </form>
       <i class="fa-solid fa-bag-shopping m-3"></i>
+
+      <div class="auth" *ngIf="!user">
+        <a routerLink="/auth">Login</a>
+        <a routerLink="/auth/register">Register</a>
+      </div>
+
+      <div class="user" *ngIf="user">
+        <i class="fa-regular fa-user"></i>
+        <i
+          (click)="logOut()"
+          class="fa-solid fa-right-from-bracket log-out"
+        ></i>
+      </div>
     </div>
   </div>
 </nav>

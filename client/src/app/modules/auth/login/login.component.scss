@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    color: #173551;
+    margin: 2rem 0;
+  }
+
+  .form {
+    max-width: fit-content;
+    text-align: center;
+    margin: 2rem 0;
+    padding: 2rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+    .button {
+      button {
+        color: white;
+        margin: 1rem;
+        background-color: #173551;
+        border: 0;
+        width: 200px;
+        transition: 0.5s;
+        border: 1px solid #173551;
+      }
+
+      button:hover {
+        background-color: white;
+        color: #173551;
+      }
+    }
+    mat-form-field {
+      width: 500px;
+    }
+    background-color: #eee;
+  }
+
+  a {
+    color: #173551;
+    &:active {
+      color: blue;
+    }
+    font-size: 1em;
+    display: block;
+    margin: auto;
+  }
+
+  button.hide-password {
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+  mat-label {
+    color: #173551;
+  }
+  mat-error {
+    color: red;
+  }
+  mat-icon {
+    color: #173551;
+  }
+
+  div.mat-mdc-text-field-wrapper.mdc-text-field {
+    background-color: #eee;
+    border: 1px solid #173551;
+    input {
+      color: #173551;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+h1 {
+  color: #173551;
+  margin: 1rem;
+}
+
+.artists {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1rem;
+  margin: 1rem;
+
+  p {
+    padding: 1rem 2rem;
+    background-color: #eee;
+    cursor: pointer;
+  }
+}

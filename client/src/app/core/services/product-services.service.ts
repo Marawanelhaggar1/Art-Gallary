@@ -29,4 +29,10 @@ export class ProductServicesService {
       `http://localhost:8000/api/products/category/${id}`
     );
   }
+
+  getProductByArtistId(id: number): Observable<{ data: ProductsModel[] }> {
+    return this._http.get<{ data: ProductsModel[] }>(
+      `http://localhost:8000/api/products/artist/${id}`
+    );
+  }
 }

@@ -90,6 +90,7 @@ Route::group(
             Route::get('/', 'ProductsController@index');
             Route::get('/{id}', 'ProductsController@getProductById');
             Route::get('category/{category_id}', 'ProductsController@getProductByCategory');
+            Route::get('artist/{artist_id}', 'ProductsController@getProductByArtist');
             Route::post('/', 'ProductsController@create')->middleware(['auth:sanctum']);
             Route::put('/', 'ProductsController@update')->middleware(['auth:sanctum']);
             Route::delete('/{id}', 'ProductsController@delete')->middleware(['auth:sanctum']);

@@ -35,6 +35,17 @@ class ProductsController extends Controller
         return ProductsResource::collection($byCategory);
     }
 
+    public function getProductByArtist($artist_id){
+        $products = Products::all();
+        $byArtist=[];
+        foreach($products as $prod) {
+           if( $prod['artist_id'] == $artist_id){
+            $byArtist[]=$prod;
+           } ;
+        }
+        return ProductsResource::collection($byArtist);
+    }
+
 
     public function create(createProductsRequest $request){
         $product = $request->createProducts();

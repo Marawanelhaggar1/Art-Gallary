@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <h1>Artist List :</h1>
+  <div class="artists">
+    <p
+      *ngFor="let art of artists"
+      [routerLink]="['/', 'products', 'artist', art.id]"
+    >
+      {{ art.name }}
+    </p>
+  </div>
+</div>

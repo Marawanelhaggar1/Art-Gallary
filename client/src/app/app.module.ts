@@ -8,9 +8,11 @@ import { NavbarComponent } from './componant/navbar/navbar.component';
 import { FooterComponent } from './componant/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularMatModule } from './shared/ui/angular-mat/angular-mat.module';
+import { CookieService } from 'ngx-cookie-service';
+import { HomeComponent } from './componant/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, FooterComponent],
+  declarations: [AppComponent, NavbarComponent, FooterComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -18,7 +20,7 @@ import { AngularMatModule } from './shared/ui/angular-mat/angular-mat.module';
     HttpClientModule,
     AngularMatModule,
   ],
-  providers: [HttpClientModule, AngularMatModule],
+  providers: [HttpClientModule, AngularMatModule, CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

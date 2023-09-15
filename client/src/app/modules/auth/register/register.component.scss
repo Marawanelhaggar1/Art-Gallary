@@ -1,0 +1,36 @@
+form {
+  color: #173551;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 500px;
+  background-color: #eee;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+
+  .group {
+    width: 500px;
+    margin: 1rem 0;
+
+    label {
+      margin: 10px 0;
+    }
+  }
+
+  .actions {
+    button {
+      margin: 1rem;
+      background-color: #173551;
+      border: 0;
+      width: 100px;
+      transition: 0.5s;
+      border: 1px solid #173551;
+    }
+
+    button:hover {
+      background-color: white;
+      color: #173551;
+    }
+  }
+}

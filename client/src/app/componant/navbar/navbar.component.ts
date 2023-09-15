@@ -1,27 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CategoriesModel } from '../../core/models/categories-model';
 import { CategoryServicesService } from '../../core/services/category-services.service';
-import { ArtistsModel } from '../../core/models/artists-model';
-import { ArtistsServicesService } from '../../core/services/artists-services.service';
+
+import { User } from 'src/app/core/models/user';
+import { CookieService } from 'ngx-cookie-service';
+import { UserService } from 'src/app/core/services/auth/user.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class NavbarComponent {
   categories: CategoriesModel[] = [];
-  artists: ArtistsModel[] = [];
   selectedValue?: string;
+
+  user?: User | null;
 
   constructor(
     private categoryService: CategoryServicesService,
-    private artistService: ArtistsServicesService
-  ) {}
+    private _cookie: CookieService,
+    private _userService: UserService
+  ) {
+    console.log(this.user);
+  }
 
   ngOnInit(): void {
     this.getCategories();
-    this.getArtists();
+    this.getUser();
+    if (this._cookie.get('user')) {
+      this.user = JSON.parse(this._cookie.get('user'));
+    } else {
+      this.user = null;
+    }
   }
 
   getCategories() {
@@ -31,10 +43,14 @@ export class NavbarComponent {
     });
   }
 
-  getArtists() {
-    this.artistService.getAllArtists().subscribe((res) => {
-      this.artists = [...res.data];
-      return this.artists;
+  getUser() {
+    return this._userService.get().subscribe((res) => {
+      console.log(res);
     });
+  }
+
+  logOut() {
+    this.user = null;
+    this._cookie.delete('user');
   }
 }

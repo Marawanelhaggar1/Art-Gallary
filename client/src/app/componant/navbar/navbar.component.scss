@@ -1,12 +1,30 @@
 .list {
   height: 100%;
-  // background-color: red;
-  height: fit-content !important;
-  margin-top: 1rem;
+}
+.auth {
+  a {
+    margin: 10px;
+    color: #0a2d4e;
+    font-size: larger;
+    transition: 0.3s;
+  }
 
-  .dropdown {
-    .mat {
-      height: 70px !important;
-    }
+  a:hover {
+    color: #2a557e;
+  }
+}
+
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  p {
+    margin: 10px;
+  }
+
+  .log-out {
+    cursor: pointer;
+    margin: 10px;
   }
 }
