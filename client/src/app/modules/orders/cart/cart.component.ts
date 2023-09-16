@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsModel } from 'src/app/core/models/products-model';
 
 @Component({
@@ -7,7 +7,7 @@ import { ProductsModel } from 'src/app/core/models/products-model';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
-  cart: ProductsModel[] = [];
+  cart: any[] = [];
   finalCart: { product_id: number; product_quantity: number }[] = [];
   count?: number;
   displayedColumns: string[] = ['id', 'image', 'name', 'price', 'count'];
@@ -18,14 +18,17 @@ export class CartComponent {
     this.getProducts();
     // console.log(this.count);
     this.cart.forEach((prod) => {
-      this.finalCart.push({ product_id: prod.id, product_quantity: 1 });
+      prod.count = 1;
     });
-    console.log(this.finalCart);
   }
 
   getProducts() {
     if (localStorage.getItem('cart')) {
       this.cart = JSON.parse(localStorage.getItem('cart')!);
     }
+  }
+
+  sendToCheckOut() {
+    console.log(this.cart);
   }
 }

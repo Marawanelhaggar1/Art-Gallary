@@ -59,7 +59,7 @@ export class LoginComponent {
       next: (res) => {
         this.user = res;
         this._cookie.set('user', JSON.stringify(res));
-        this.reloadComponent();
+        this.sendToHome();
 
         console.log(this.user);
       },
@@ -70,8 +70,7 @@ export class LoginComponent {
     });
   }
 
-  reloadComponent() {
-    window.location.reload();
-    this._router.navigate(['/']);
+  sendToHome() {
+    window.location.href = '/';
   }
 }

@@ -106,6 +106,8 @@ Route::group(
             function () {
                 Route::get('/{id}', 'OrderController@getOrder');
                 Route::post('/', 'OrderController@create');
+                Route::get('/', 'OrderController@getAllOrders');
+                Route::get('/order/details', 'OrderController@getAllOrdersDetails');
                 Route::delete('/{id}', 'OrderController@delete');
 
             }

@@ -57,4 +57,14 @@ class OrderController extends Controller
         $order=Order::findOrFail($id);
         return $order;
     }
+
+    public function getAllOrders(){
+        $order = Order::all();
+        return $order;
+    }
+
+    public function getAllOrdersDetails(){
+         $order_details = OrderDetails::all();
+        return $order_details;
+    }
 }

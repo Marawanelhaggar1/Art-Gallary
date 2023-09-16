@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ArtistsModel } from '../models/artists-model';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root',
 })
 export class ArtistsServicesService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private _Cookie: CookieService) {}
 
   getAllArtists(): Observable<{ data: ArtistsModel[] }> {
     return this._http.get<{ data: ArtistsModel[] }>(
@@ -17,5 +18,15 @@ export class ArtistsServicesService {
     return this._http.get<{ data: ArtistsModel }>(
       `http://localhost:8000/api/artists/${id}`
     );
+  }
+
+  createArtist(body: any): Observable<ArtistsModel> {
+    return this._http.post<ArtistsModel>('http://localhost:8000/api/artists', {
+      headers: {
+        Authorization:
+          'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,
+      },
+      body,
+    });
   }
 }

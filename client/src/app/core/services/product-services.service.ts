@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProductsModel } from '../models/products-model';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductServicesService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private _Cookie: CookieService) {}
 
   getAllProducts(
     page: number
@@ -42,6 +43,19 @@ export class ProductServicesService {
     return this._http.post<ProductsModel[]>(
       `http://localhost:8000/api/products/search/product`,
       req
+    );
+  }
+
+  createProduct(body: any): Observable<ProductsModel> {
+    return this._http.post<ProductsModel>(
+      'http://localhost:8000/api/products',
+      {
+        headers: {
+          Authorization:
+            'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,
+        },
+        body,
+      }
     );
   }
 }

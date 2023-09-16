@@ -18,12 +18,6 @@ import { MatDialogRef } from '@angular/material/dialog';
     ReactiveFormsModule,
     AngularMatModule,
   ],
-  providers: [
-    CookieService,
-    {
-      provide: MatDialogRef,
-      useValue: {},
-    },
-  ],
+  providers: [CookieService],
 })
 export class AuthModule {}

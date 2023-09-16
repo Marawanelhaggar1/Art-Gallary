@@ -1,1 +1,37 @@
-<p>checkout works!</p>
+<div class="container">
+  <form [formGroup]="order" (ngSubmit)="onSubmit()" class="form">
+    <h1>Checkout Form</h1>
+    <div class="form-field">
+      <mat-form-field class="custom-form-field">
+        <mat-label>Enter your name</mat-label>
+        <input matInput formControlName="name" required />
+        <mat-error *ngIf="name.invalid">{{ getError() }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <mat-form-field class="custom-form-field">
+        <mat-label>Enter your email</mat-label>
+        <input matInput formControlName="email" required />
+        <mat-error *ngIf="email.invalid">{{ getError() }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <mat-form-field class="custom-form-field">
+        <mat-label>Enter your phone</mat-label>
+        <input matInput formControlName="phone" required />
+        <mat-error *ngIf="phone.invalid">{{ getError() }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <mat-form-field class="custom-form-field">
+        <mat-label>Enter your address</mat-label>
+        <input matInput formControlName="address" required />
+        <mat-error *ngIf="address.invalid">{{ getError() }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="button">
+      <button class="submit" type="submit" mat-raised-button>Order Now</button>
+    </div>
+  </form>
+</div>
