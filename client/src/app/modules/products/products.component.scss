@@ -2,15 +2,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   margin: 1rem;
-  // padding: 1rem;
   gap: 2rem;
   .product {
-    width: 300px;
-    // height: 400px;
     margin: 0px;
 
     .img-fluid {
-      width: 100%;
       overflow: hidden;
 
       img {

@@ -6,11 +6,7 @@ import { ProductCategoryComponent } from './product-category/product-category.co
 import { ProductArtistComponent } from './product-artist/product-artist.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ProductsComponent,
-    children: [],
-  },
+  { path: '', component: ProductsComponent },
   { path: 'product/:id', component: OneProductsComponent },
   { path: 'category/:id', component: ProductCategoryComponent },
   { path: 'artist/:id', component: ProductArtistComponent },

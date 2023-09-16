@@ -6,7 +6,9 @@
       <h4>{{ product.price }} <strong>LE</strong></h4>
     </div>
     <div class="actions">
-      <button class="first-btn">Add To Cart</button>
+      <button class="first-btn" (click)="addToCart(product)">
+        Add To Cart
+      </button>
       <button class="second-btn">Buy It Now</button>
     </div>
     <div class="info-2">

@@ -35,4 +35,13 @@ export class ProductServicesService {
       `http://localhost:8000/api/products/artist/${id}`
     );
   }
+
+  searchProduct(name: any): Observable<ProductsModel[]> {
+    const req = { search: name };
+
+    return this._http.post<ProductsModel[]>(
+      `http://localhost:8000/api/products/search/product`,
+      req
+    );
+  }
 }

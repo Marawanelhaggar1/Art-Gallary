@@ -42,11 +42,18 @@
         <input
           class="form-control me-2"
           type="search"
+          name="search"
           placeholder="Search"
+          [(ngModel)]="searchInput"
+          (keyup.enter)="search()"
           aria-label="Search"
         />
       </form>
-      <i class="fa-solid fa-bag-shopping m-3"></i>
+
+      <div class="cart" mat-button (click)="openDialog()">
+        <i class="fa-solid fa-bag-shopping m-3"></i>
+        <span>{{ cartCount }}</span>
+      </div>
 
       <div class="auth" *ngIf="!user">
         <a routerLink="/auth">Login</a>

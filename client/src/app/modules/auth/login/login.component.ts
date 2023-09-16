@@ -8,8 +8,8 @@ import {
 import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/services/auth/user.service';
-// import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -27,9 +27,9 @@ export class LoginComponent {
     private _authService: UserService,
     private _formBuilder: FormBuilder,
     private _cookie: CookieService,
+    private _router: Router,
     private _snack: MatSnackBar
-  ) // private _dialog: MatDialogRef<LoginComponent>
-  {
+  ) {
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
@@ -59,15 +59,19 @@ export class LoginComponent {
       next: (res) => {
         this.user = res;
         this._cookie.set('user', JSON.stringify(res));
+        this.reloadComponent();
+
         console.log(this.user);
       },
       error: (err) => {
         console.log(err);
         this._snack.open(err.error.message, 'X', { duration: 4000 });
       },
-      // complete: () => {
-      //   this._dialog.close(this.user);
-      // },
     });
+  }
+
+  reloadComponent() {
+    window.location.reload();
+    this._router.navigate(['/']);
   }
 }

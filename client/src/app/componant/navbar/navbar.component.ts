@@ -5,6 +5,10 @@ import { CategoryServicesService } from '../../core/services/category-services.s
 import { User } from 'src/app/core/models/user';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/core/services/auth/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CartComponent } from 'src/app/modules/orders/cart/cart.component';
+import { ProductsModel } from 'src/app/core/models/products-model';
+import { ProductServicesService } from 'src/app/core/services/product-services.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,15 +19,20 @@ import { UserService } from 'src/app/core/services/auth/user.service';
 export class NavbarComponent {
   categories: CategoriesModel[] = [];
   selectedValue?: string;
-
+  cartCount?: number;
   user?: User | null;
+  searchInput: string = '';
+  searchResult: ProductsModel[] = [];
 
   constructor(
     private categoryService: CategoryServicesService,
     private _cookie: CookieService,
-    private _userService: UserService
+    private _userService: UserService,
+    public dialog: MatDialog,
+    private _productService: ProductServicesService
   ) {
     console.log(this.user);
+    this.getCartCount();
   }
 
   ngOnInit(): void {
@@ -34,6 +43,14 @@ export class NavbarComponent {
     } else {
       this.user = null;
     }
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(CartComponent);
+
+    // dialogRef.afterClosed().subscribe((res) => {
+    //   console.log(res);
+    // });
   }
 
   getCategories() {
@@ -52,5 +69,22 @@ export class NavbarComponent {
   logOut() {
     this.user = null;
     this._cookie.delete('user');
+    localStorage.removeItem('cart');
+    this.cartCount = 0;
+  }
+  getCartCount() {
+    if (localStorage.getItem('cart')) {
+      this.cartCount = JSON.parse(localStorage.getItem('cart')!).length;
+    } else {
+      this.cartCount = 0;
+    }
+    return this.cartCount;
+  }
+
+  search() {
+    this._productService.searchProduct(this.searchInput).subscribe((res) => {
+      this.searchResult = [...res];
+      console.log(this.searchResult);
+    });
   }
 }

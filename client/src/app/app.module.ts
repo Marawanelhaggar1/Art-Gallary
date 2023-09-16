@@ -9,6 +9,8 @@ import { FooterComponent } from './componant/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularMatModule } from './shared/ui/angular-mat/angular-mat.module';
 import { CookieService } from 'ngx-cookie-service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { HomeComponent } from './componant/home/home.component';
 
 @NgModule({
@@ -18,6 +20,8 @@ import { HomeComponent } from './componant/home/home.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     AngularMatModule,
   ],
   providers: [HttpClientModule, AngularMatModule, CookieService],

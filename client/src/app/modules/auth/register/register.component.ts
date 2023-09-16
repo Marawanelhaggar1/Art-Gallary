@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/services/auth/user.service';
 
@@ -15,8 +14,7 @@ export class RegisterComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _authService: UserService,
-    private _cookie: CookieService
+    private _authService: UserService
   ) {
     this.registerForm = this._formBuilder.group({
       name: ['', [Validators.required]],
@@ -38,7 +36,6 @@ export class RegisterComponent {
       next: (res) => {
         this.user = res;
         console.log(res);
-        this._cookie.set('user', JSON.stringify(res));
       },
 
       error: (err) => {

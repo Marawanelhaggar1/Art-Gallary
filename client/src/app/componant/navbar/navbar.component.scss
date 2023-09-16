@@ -13,6 +13,27 @@
     color: #2a557e;
   }
 }
+i {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0a2d4e;
+}
+.cart {
+  position: relative;
+  cursor: pointer;
+
+  span {
+    position: absolute;
+    top: 14%;
+
+    left: 5%;
+    font-size: smaller;
+    padding: 0 4px;
+    background-color: #0a2d4e;
+    color: white;
+    border-radius: 100%;
+  }
+}
 
 .user {
   display: flex;

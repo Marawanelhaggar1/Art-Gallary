@@ -35,6 +35,12 @@ class ProductsController extends Controller
         return ProductsResource::collection($byCategory);
     }
 
+    public function searchForProduct(Request $request){
+            $search = $request->all()['search'];
+            $product = Products::where('name','like','%'.$search.'%')->get();
+            return $product;
+    }
+
     public function getProductByArtist($artist_id){
         $products = Products::all();
         $byArtist=[];

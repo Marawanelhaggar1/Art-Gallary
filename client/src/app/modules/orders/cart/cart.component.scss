@@ -1,0 +1,31 @@
+img {
+  width: 100px;
+  height: 100px;
+}
+span {
+  text-align: center;
+  display: inline-table;
+  width: 30px;
+  margin: 10px;
+  font-size: 30px;
+}
+
+.opp {
+  background-color: #173551;
+  color: white;
+  cursor: pointer;
+}
+table {
+  width: 100%;
+}
+
+.button {
+  text-align: center;
+  .checkout {
+    border: none;
+    background-color: #173551;
+    color: white;
+    margin: 1rem;
+    padding: 1rem 2rem;
+  }
+}
