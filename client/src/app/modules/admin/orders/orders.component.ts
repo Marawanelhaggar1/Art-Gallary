@@ -25,25 +25,26 @@ export class OrdersComponent {
   getAllOrders() {
     return this._orderService.getAllOrders().subscribe((data) => {
       this.orders = [...data];
+      console.log(this.orders);
     });
   }
 
   getAllOrderDetails() {
     return this._orderService.getAllOrdersDetails().subscribe((data) => {
       this.orderDetails = [...data];
-      this.getDetailsByOrderId(6);
-      console.log(this.orderDetailsByOrder);
+      console.log(this.orderDetails);
     });
   }
 
   getDetailsByOrderId(orderId: number) {
-    // console.log(orderId);
     this.orderDetails.forEach((orderDetail) => {
-      // console.log(orderDetail.order_Id);
-      if (orderId == orderDetail.order_id) {
+      if (
+        orderId == orderDetail.order_id &&
+        !this.orderDetailsByOrder.includes(orderDetail)
+      ) {
         this.orderDetailsByOrder.push(orderDetail);
       }
     });
-    // console.log(this.orderDetails);
+    console.log(this.orderDetailsByOrder);
   }
 }

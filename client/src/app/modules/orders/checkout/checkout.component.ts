@@ -65,6 +65,7 @@ export class CheckoutComponent {
         this._snack.open('Products Ordered Successfully', 'X', {
           duration: 4000,
         });
+        localStorage.removeItem('checkout');
         this.sendToHome();
       },
       error: (err) => {

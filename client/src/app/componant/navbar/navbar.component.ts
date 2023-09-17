@@ -74,8 +74,9 @@ export class NavbarComponent {
   logOut() {
     this.user = null;
     this._cookie.delete('user');
-    localStorage.removeItem('cart');
+    // localStorage.removeItem('cart');
     this.cartCount = 0;
+    localStorage.clear();
     this.sendToHome();
   }
   getCartCount() {

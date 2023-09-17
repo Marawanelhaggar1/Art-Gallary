@@ -1,6 +1,6 @@
 <app-admin></app-admin>
 
-<div class="accordion" id="accordionExample">
+<div class="accordion m-5" id="accordionExample">
   <div class="accordion-item" *ngFor="let order of orders">
     <h2 class="accordion-header" id="headingOne">
       <button
@@ -10,21 +10,27 @@
         data-bs-target="#collapseOne"
         aria-expanded="true"
         aria-controls="collapseOne"
+        (click)="getDetailsByOrderId(order.id)"
       >
-        Accordion Item #1
+        {{ order.customer_email }}
       </button>
     </h2>
     <div
       id="collapseOne"
-      class="accordion-collapse collapse show"
+      class="accordion-collapse collapse hide"
       aria-labelledby="headingOne"
       data-bs-parent="#accordionExample"
     >
       <div class="accordion-body">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus
-        aspernatur quaerat, libero natus nisi incidunt soluta. Optio non qui et
-        eligendi obcaecati hic illo cumque quaerat, tempore quo, unde
-        distinctio.
+        <div *ngFor="let item of orderDetailsByOrder" class="card m-2 p-3">
+          <p>
+            product-id :
+            <a h [routerLink]="['/', 'products', 'product', item.product_id]">
+              {{ item.product_id }}
+            </a>
+          </p>
+          <p>product-quantity : {{ item.product_quantity }}</p>
+        </div>
       </div>
     </div>
   </div>
