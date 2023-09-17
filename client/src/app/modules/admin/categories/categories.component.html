@@ -1,0 +1,42 @@
+<app-admin></app-admin>
+
+<div class="container-fluid">
+  <form [formGroup]="newCategory" (ngSubmit)="onSubmit()" class="form">
+    <h1>Add Category Form</h1>
+    <div class="form-field">
+      <mat-form-field class="custom-form-field">
+        <mat-label>Enter your name</mat-label>
+        <input matInput formControlName="name" required />
+        <mat-error *ngIf="name.invalid">{{ getError() }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="button">
+      <button class="submit" type="submit" mat-raised-button>Order Now</button>
+    </div>
+  </form>
+</div>
+
+<div class="container row">
+  <div class="product col-3 m-2" *ngFor="let cat of categories">
+    <h5>Id: {{ cat.id }}</h5>
+    <h5>Name: {{ cat.name }}</h5>
+
+    <div class="actions">
+      <button
+        type="button"
+        class="btn btn-danger m-1"
+        (click)="deleteCategory(cat.id)"
+      >
+        Delete
+      </button>
+      <button
+        type="button"
+        class="btn btn-dark m-1"
+        (click)="updateCategory(cat.id)"
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</div>

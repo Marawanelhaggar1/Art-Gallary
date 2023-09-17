@@ -58,4 +58,13 @@ export class ProductServicesService {
       }
     );
   }
+
+  delete(id: number) {
+    return this._http.delete(`http://localhost:8000/api/products/${id}`, {
+      headers: {
+        Authorization:
+          'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,
+      },
+    });
+  }
 }

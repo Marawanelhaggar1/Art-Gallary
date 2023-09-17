@@ -1,0 +1,31 @@
+<app-admin></app-admin>
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item" *ngFor="let order of orders">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        Accordion Item #1
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus
+        aspernatur quaerat, libero natus nisi incidunt soluta. Optio non qui et
+        eligendi obcaecati hic illo cumque quaerat, tempore quo, unde
+        distinctio.
+      </div>
+    </div>
+  </div>
+</div>

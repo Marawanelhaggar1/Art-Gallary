@@ -34,4 +34,13 @@ export class CategoryServicesService {
       }
     );
   }
+
+  delete(id: number) {
+    return this._http.delete(`http://localhost:8000/api/categories/${id}`, {
+      headers: {
+        Authorization:
+          'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,
+      },
+    });
+  }
 }

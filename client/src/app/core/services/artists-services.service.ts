@@ -21,8 +21,20 @@ export class ArtistsServicesService {
   }
 
   createArtist(body: any): Observable<ArtistsModel> {
-    return this._http.post<ArtistsModel>('http://localhost:8000/api/artists', {
+    return this._http.post<ArtistsModel>(
+      'http://localhost:8000/api/artists',
       body,
+      {
+        headers: {
+          Authorization:
+            'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,
+        },
+      }
+    );
+  }
+
+  delete(id: number) {
+    return this._http.delete(`http://localhost:8000/api/artists/${id}`, {
       headers: {
         Authorization:
           'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,

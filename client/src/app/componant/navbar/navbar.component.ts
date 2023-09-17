@@ -22,6 +22,7 @@ export class NavbarComponent {
   cartCount?: number;
   user?: User | null;
   searchInput: string = '';
+  role: string = '';
   searchResult: ProductsModel[] = [];
 
   constructor(
@@ -47,10 +48,6 @@ export class NavbarComponent {
 
   openDialog() {
     const dialogRef = this.dialog.open(CartComponent);
-
-    // dialogRef.afterClosed().subscribe((res) => {
-    //   console.log(res);
-    // });
   }
 
   getCategories() {
@@ -62,8 +59,16 @@ export class NavbarComponent {
 
   getUser() {
     return this._userService.get().subscribe((res) => {
-      console.log(res);
+      this.role = res.role;
     });
+  }
+
+  admin(): boolean {
+    if (this.role === 'admin') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   logOut() {
@@ -71,6 +76,7 @@ export class NavbarComponent {
     this._cookie.delete('user');
     localStorage.removeItem('cart');
     this.cartCount = 0;
+    this.sendToHome();
   }
   getCartCount() {
     if (localStorage.getItem('cart')) {
@@ -86,5 +92,9 @@ export class NavbarComponent {
       this.searchResult = [...res];
       console.log(this.searchResult);
     });
+  }
+
+  sendToHome() {
+    window.location.href = '/';
   }
 }

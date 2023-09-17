@@ -1,0 +1,41 @@
+<app-admin></app-admin>
+<div class="container-fluid">
+  <form [formGroup]="newArtist" (ngSubmit)="onSubmit()" class="form">
+    <h1>Add Artist Form</h1>
+    <div class="form-field">
+      <mat-form-field class="custom-form-field">
+        <mat-label>Enter your name</mat-label>
+        <input matInput formControlName="name" required />
+        <mat-error *ngIf="name.invalid">{{ getError() }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="button">
+      <button class="submit" type="submit" mat-raised-button>Order Now</button>
+    </div>
+  </form>
+</div>
+
+<div class="container row">
+  <div class="product col-3 m-2" *ngFor="let art of artists">
+    <h5>Id: {{ art.id }}</h5>
+    <h5>Name: {{ art.name }}</h5>
+
+    <div class="actions">
+      <button
+        type="button"
+        class="btn btn-danger m-1"
+        (click)="deleteArtist(art.id)"
+      >
+        Delete
+      </button>
+      <button
+        type="button"
+        class="btn btn-dark m-1"
+        (click)="updateArtist(art.id)"
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</div>
