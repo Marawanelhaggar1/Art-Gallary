@@ -5,8 +5,8 @@
   color: #173551;
 
   .image {
-    height: 700px;
-    width: 100%;
+    max-height: 500px;
+    width: 50%;
 
     img {
       height: 100%;
@@ -15,6 +15,7 @@
   }
 
   .content {
+    width: 50%;
     .info-1 {
       text-align: center;
       margin: 1rem;
@@ -67,6 +68,18 @@
       p {
         text-align: center;
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    flex-direction: column;
+    .image {
+      width: 100%;
+    }
+    .content {
+      width: 100%;
     }
   }
 }
