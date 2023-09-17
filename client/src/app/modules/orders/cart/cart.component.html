@@ -41,7 +41,12 @@
 </table>
 
 <div class="button">
-  <button class="checkout" (click)="sendToCheckOut()" type="button">
+  <button
+    class="checkout"
+    routerLink="/orders"
+    (click)="sendToCheckOut()"
+    type="button"
+  >
     To Checkout
   </button>
 </div>

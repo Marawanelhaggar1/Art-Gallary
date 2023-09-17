@@ -32,13 +32,16 @@ export class OrdersService {
   }
 
   createOrder(body: any): Observable<FInal_Orders> {
-    return this._http.post<FInal_Orders>('http://localhost:8000/api/orders', {
-      headers: {
-        Authorization:
-          'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,
-      },
+    return this._http.post<FInal_Orders>(
+      'http://localhost:8000/api/orders',
       body,
-    });
+      {
+        headers: {
+          Authorization:
+            'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,
+        },
+      }
+    );
   }
 
   getOrderById(id: number): Observable<Order> {

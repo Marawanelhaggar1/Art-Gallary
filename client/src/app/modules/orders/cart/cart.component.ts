@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { OrderDetails } from 'src/app/core/models/orders';
 import { ProductsModel } from 'src/app/core/models/products-model';
 
 @Component({
@@ -8,15 +10,13 @@ import { ProductsModel } from 'src/app/core/models/products-model';
 })
 export class CartComponent {
   cart: any[] = [];
-  finalCart: { product_id: number; product_quantity: number }[] = [];
-  count?: number;
+  finalCart: OrderDetails[] = [];
   displayedColumns: string[] = ['id', 'image', 'name', 'price', 'count'];
 
-  constructor() {}
+  constructor(private _dialog: MatDialog) {}
 
   ngOnInit() {
     this.getProducts();
-    // console.log(this.count);
     this.cart.forEach((prod) => {
       prod.count = 1;
     });
@@ -29,6 +29,15 @@ export class CartComponent {
   }
 
   sendToCheckOut() {
-    console.log(this.cart);
+    this.cart.forEach((prod) => {
+      this.finalCart.push({
+        product_quantity: prod.count,
+        product_id: prod.id,
+      });
+    });
+    if (!localStorage.getItem('checkout')) {
+      localStorage.setItem('checkout', JSON.stringify(this.finalCart));
+    }
+    this._dialog.closeAll();
   }
 }

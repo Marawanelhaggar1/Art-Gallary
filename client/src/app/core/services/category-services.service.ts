@@ -25,12 +25,12 @@ export class CategoryServicesService {
   createCategory(body: any): Observable<CategoriesModel> {
     return this._http.post<CategoriesModel>(
       'http://localhost:8000/api/categories',
+      body,
       {
         headers: {
           Authorization:
             'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,
         },
-        body,
       }
     );
   }

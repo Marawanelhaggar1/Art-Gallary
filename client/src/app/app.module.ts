@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './componant/home/home.component';
+import { AdminGuard } from './core/guards/admin.guard';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, FooterComponent, HomeComponent],

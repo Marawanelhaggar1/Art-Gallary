@@ -5,6 +5,7 @@ import { OrdersRoutingModule } from './orders-routing.module';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AngularMatModule } from 'src/app/shared/ui/angular-mat/angular-mat.module';
+import { IsLoggedIn } from 'src/app/core/guards/is-logged-in.guard';
 
 @NgModule({
   declarations: [CartComponent, CheckoutComponent],
@@ -15,6 +16,6 @@ import { AngularMatModule } from 'src/app/shared/ui/angular-mat/angular-mat.modu
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [IsLoggedIn],
 })
 export class OrdersModule {}
