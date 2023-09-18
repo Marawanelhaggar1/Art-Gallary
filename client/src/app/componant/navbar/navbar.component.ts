@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  Renderer2,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { CategoriesModel } from '../../core/models/categories-model';
 import { CategoryServicesService } from '../../core/services/category-services.service';
 
@@ -27,12 +34,14 @@ export class NavbarComponent {
 
   constructor(
     private categoryService: CategoryServicesService,
+    private productService: ProductServicesService,
     private _cookie: CookieService,
     private _userService: UserService,
     public dialog: MatDialog,
-    private _productService: ProductServicesService
+    private _productService: ProductServicesService,
+    private _eref: ElementRef,
+    private _renderer: Renderer2
   ) {
-    console.log(this.user);
     this.getCartCount();
   }
 
@@ -88,14 +97,41 @@ export class NavbarComponent {
     return this.cartCount;
   }
 
+  sendToHome() {
+    window.location.href = '/';
+  }
+
+  @ViewChild('searchBox') searchBox!: ElementRef;
+
+  closeSearchBox() {
+    const searchBoxIsVisible =
+      this.searchBox.nativeElement.classList.contains('show');
+    if (searchBoxIsVisible) {
+      this._renderer.removeClass(this.searchBox.nativeElement, 'show');
+    }
+  }
+
   search() {
-    this._productService.searchProduct(this.searchInput).subscribe((res) => {
-      this.searchResult = [...res];
-      console.log(this.searchResult);
+    this._productService.searchProduct(this.searchInput).subscribe({
+      next: (results) => {
+        this.searchResult = results;
+        if (this.searchResult) {
+          this._renderer.addClass(this.searchBox.nativeElement, 'show');
+        }
+        console.log(this.searchResult);
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      },
+      complete: () => {
+        this.searchInput = '';
+      },
     });
   }
 
-  sendToHome() {
-    window.location.href = '/';
+  onClick(event: any) {
+    if (!this._eref.nativeElement.contains(event.target)) {
+      this.closeSearchBox();
+    }
   }
 }

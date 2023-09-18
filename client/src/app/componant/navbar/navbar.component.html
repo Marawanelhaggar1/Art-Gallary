@@ -80,3 +80,16 @@
     </div>
   </div>
 </nav>
+<div #searchBox class="search-box">
+  <span><i (click)="closeSearchBox()" class="fa-solid fa-x"></i></span>
+  <div class="search-results">
+    <div
+      class="result"
+      *ngFor="let result of searchResult"
+      (click)="closeSearchBox()"
+      [routerLink]="['/', 'products', 'product', result.id]"
+    >
+      {{ result.name }}
+    </div>
+  </div>
+</div>
