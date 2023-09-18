@@ -32,34 +32,8 @@
       }
     }
     mat-form-field {
-      width: 500px;
+      width: 300px;
     }
     background-color: #eee;
-  }
-
-  .header {
-    border-bottom: 2px solid #173551;
-    padding-bottom: 10px;
-  }
-  .subject {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    width: 100%;
-    gap: 1rem;
-    .product {
-      border: 2px solid #eee;
-      padding: 2rem;
-      // width: 300px;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .container-fluid {
-    .form {
-      mat-form-field {
-        width: 100%;
-      }
-    }
   }
 }

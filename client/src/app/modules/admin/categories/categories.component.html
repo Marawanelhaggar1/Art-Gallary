@@ -12,31 +12,36 @@
     </div>
 
     <div class="button">
-      <button class="submit" type="submit" mat-raised-button>Order Now</button>
+      <button class="submit" type="submit" mat-raised-button>
+        Add Category
+      </button>
     </div>
   </form>
 </div>
 
-<div class="container row">
-  <div class="product col-3 m-2" *ngFor="let cat of categories">
-    <h5>Id: {{ cat.id }}</h5>
-    <h5>Name: {{ cat.name }}</h5>
+<div class="container-fluid">
+  <h1 class="header">Categories List</h1>
+  <div class="subject">
+    <div class="product m-2" *ngFor="let cat of categories">
+      <h5>Id: {{ cat.id }}</h5>
+      <h5>Name: {{ cat.name }}</h5>
 
-    <div class="actions">
-      <button
-        type="button"
-        class="btn btn-danger m-1"
-        (click)="deleteCategory(cat.id)"
-      >
-        Delete
-      </button>
-      <button
-        type="button"
-        class="btn btn-dark m-1"
-        (click)="updateCategory(cat.id)"
-      >
-        Update
-      </button>
+      <div class="actions">
+        <button
+          type="button"
+          class="btn btn-danger m-1"
+          (click)="deleteCategory(cat.id)"
+        >
+          Delete
+        </button>
+        <!-- <button
+          type="button"
+          class="btn btn-dark m-1"
+          (click)="updateCategory(cat.id)"
+        >
+          Update
+        </button> -->
+      </div>
     </div>
   </div>
 </div>

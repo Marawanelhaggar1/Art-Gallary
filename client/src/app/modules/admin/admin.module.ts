@@ -11,6 +11,7 @@ import { ArtistsComponent } from './artists/artists.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CategoryServicesService } from 'src/app/core/services/category-services.service';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { UpdateProductComponent } from './update-product/update-product.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     ArtistsComponent,
     OrdersComponent,
     OrderDetailsComponent,
+    UpdateProductComponent,
   ],
   imports: [
     CommonModule,

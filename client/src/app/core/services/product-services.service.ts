@@ -67,4 +67,13 @@ export class ProductServicesService {
       },
     });
   }
+
+  update(body: any) {
+    return this._http.put(`http://localhost:8000/api/products`, body, {
+      headers: {
+        Authorization:
+          'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,
+      },
+    });
+  }
 }

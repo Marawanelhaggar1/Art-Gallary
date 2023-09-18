@@ -1,7 +1,6 @@
-<app-admin></app-admin>
 <div class="container-fluid">
   <form [formGroup]="newProduct" (ngSubmit)="onSubmit()" class="form">
-    <h1>Add Product Form</h1>
+    <h1>Update Product Form</h1>
     <div class="form-field">
       <mat-form-field class="custom-form-field">
         <mat-label>Enter your name</mat-label>
@@ -57,49 +56,8 @@
 
     <div class="button">
       <button class="submit" type="submit" mat-raised-button>
-        Add Product
+        Update Product
       </button>
     </div>
   </form>
-</div>
-
-<div class="container">
-  <h1 class="header">Products List</h1>
-  <div class="product" *ngFor="let prod of products">
-    <div class="img">
-      <img [src]="prod.image" alt="" />
-    </div>
-    <div class="content text-lg-left">
-      <h4>{{ prod.name }}</h4>
-      <p>{{ prod.price }}<strong>LE</strong></p>
-    </div>
-
-    <div class="actions">
-      <button
-        type="button"
-        class="btn btn-danger m-1"
-        (click)="deleteProduct(prod.id)"
-      >
-        Delete
-      </button>
-      <button
-        type="button"
-        class="btn btn-dark m-1"
-        (click)="openDialog(prod.id)"
-      >
-        Update
-      </button>
-    </div>
-  </div>
-</div>
-
-<div class="page-numbers">
-  <button
-    type="button"
-    *ngFor="let num of page"
-    [value]="num"
-    (click)="getProducts(num)"
-  >
-    {{ num }}
-  </button>
 </div>

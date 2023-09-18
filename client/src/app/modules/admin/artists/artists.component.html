@@ -11,31 +11,34 @@
     </div>
 
     <div class="button">
-      <button class="submit" type="submit" mat-raised-button>Order Now</button>
+      <button class="submit" type="submit" mat-raised-button>Add Artist</button>
     </div>
   </form>
 </div>
 
-<div class="container row">
-  <div class="product col-3 m-2" *ngFor="let art of artists">
-    <h5>Id: {{ art.id }}</h5>
-    <h5>Name: {{ art.name }}</h5>
+<div class="container-fluid">
+  <h1 class="header">Artists List</h1>
+  <div class="subject">
+    <div class="product m-2" *ngFor="let art of artists">
+      <h5>Id: {{ art.id }}</h5>
+      <h5>Name: {{ art.name }}</h5>
 
-    <div class="actions">
-      <button
-        type="button"
-        class="btn btn-danger m-1"
-        (click)="deleteArtist(art.id)"
-      >
-        Delete
-      </button>
-      <button
+      <div class="actions">
+        <button
+          type="button"
+          class="btn btn-danger m-1"
+          (click)="deleteArtist(art.id)"
+        >
+          Delete
+        </button>
+        <!-- <button
         type="button"
         class="btn btn-dark m-1"
         (click)="updateArtist(art.id)"
       >
         Update
-      </button>
+      </button> -->
+      </div>
     </div>
   </div>
 </div>

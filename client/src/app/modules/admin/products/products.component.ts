@@ -5,9 +5,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductsModel } from 'src/app/core/models/products-model';
 import { ProductServicesService } from 'src/app/core/services/product-services.service';
+import { UpdateProductComponent } from '../update-product/update-product.component';
 
 @Component({
   selector: 'app-products',
@@ -28,7 +30,8 @@ export class ProductsComponent {
   constructor(
     private _productService: ProductServicesService,
     private _snack: MatSnackBar,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _dialog: MatDialog
   ) {
     this.newProduct = this._formBuilder.group({
       name: ['', [Validators.required]],
@@ -52,7 +55,15 @@ export class ProductsComponent {
     });
   }
 
-  updateProduct(id: number) {}
+  openDialog(id: number) {
+    this._dialog.open(UpdateProductComponent, {
+      width: '400px',
+      height: '500px',
+      data: {
+        id: id,
+      },
+    });
+  }
 
   getProducts(p: number) {
     return this._productService.getAllProducts(p).subscribe((res) => {
