@@ -15,12 +15,15 @@ class categorySeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
+                "id" =>1,
                 "name" => "Prints"
             ],
             [
+                "id"=>2,
                 "name" => "Originals"
             ],
             [
+                "id"=>3,
                 "name" => "Art Objects"
             ]
         ]);

@@ -231,7 +231,6 @@ class productSeeder extends Seeder
       "artist_id"=> 3
         ],
     [
-      "id"=> 16,
       "name"=> "four vessels",
       "description"=> "This is a demonstration store. You can purchase products like this from Ninth Editions.",
       "discount"=> 1.6,
@@ -264,7 +263,6 @@ class productSeeder extends Seeder
       "category_id"=> 2,
       "artist_id"=> 3
     ],[
-      "id"=> 19,
       "name"=> "Juice 3",
       "description"=> "This is a demonstration store. You can purchase products like this from Ninth Editions.",
       "discount"=> 1.6,

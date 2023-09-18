@@ -15,22 +15,27 @@ class artistSeeder extends Seeder
     {
         DB::table('artists')->insert([
             [
+                'id' => 1,
                 'name' => "Melanie Ke"
             ],
             [
+                'id' => 2,
                 'name' => "Eryn Lougheed"
             ],
             [
+                'id' => 3,
                 'name' => "Leia Bryans"
             ],
             [
+                'id' => 4,
                 'name' => "Sid Hicks"
             ],
             [
+                'id' => 5,
                 'name' => "Misbah Ahmed"
             ],
             [
-
+                'id' => 6,
                 'name' => "Rachel Crummey"
             ]
         ]);
