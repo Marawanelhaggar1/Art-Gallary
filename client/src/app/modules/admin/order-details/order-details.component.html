@@ -4,7 +4,9 @@
     <p>
       Product Id:
       <strong
-        ><a [routerLink]="['/', 'products', 'product', detail.product_id]"
+        ><a
+          [routerLink]="['/', 'products', 'product', detail.product_id]"
+          (click)="closeDialog()"
           >{{ detail.product_id }}
         </a></strong
       >

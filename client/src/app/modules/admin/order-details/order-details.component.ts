@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetailsAdmin } from 'src/app/core/models/orders';
 import { OrdersService } from 'src/app/core/services/orders.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 
 @Component({
@@ -13,6 +13,7 @@ export class OrderDetailsComponent {
   orderDetails: any[] = [];
   orderDetailsByOrder: OrderDetailsAdmin[] = [];
   constructor(
+    private _dialog: MatDialog,
     private _orderService: OrdersService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
@@ -40,5 +41,9 @@ export class OrderDetailsComponent {
       this.getDetailsByOrderId(this.data.id);
       console.log(this.orderDetails);
     });
+  }
+
+  closeDialog() {
+    this._dialog.closeAll();
   }
 }
