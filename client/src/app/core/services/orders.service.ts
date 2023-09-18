@@ -52,4 +52,13 @@ export class OrdersService {
       },
     });
   }
+
+  deleteOrder(id: number) {
+    return this._http.delete(`http://localhost:8000/api/orders/${id}`, {
+      headers: {
+        Authorization:
+          'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,
+      },
+    });
+  }
 }

@@ -1,0 +1,16 @@
+<div class="details m-2">
+  <h3 class="">Details:</h3>
+  <div class="card p-2 m-3" *ngFor="let detail of orderDetailsByOrder">
+    <p>
+      Product Id:
+      <strong
+        ><a [routerLink]="['/', 'products', 'product', detail.product_id]"
+          >{{ detail.product_id }}
+        </a></strong
+      >
+    </p>
+    <p>
+      Product Quantity: <strong>{{ detail.product_quantity }}</strong>
+    </p>
+  </div>
+</div>

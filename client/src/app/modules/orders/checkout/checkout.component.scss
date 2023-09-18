@@ -1,0 +1,30 @@
+.all {
+  text-align: center;
+  form {
+    background-color: #eee;
+    margin: 2rem;
+    padding: 2rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+
+    h1 {
+      color: #173551;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      color: white;
+      margin: 1rem;
+      background-color: #173551;
+      padding: 10px;
+      border: 0;
+      width: 150px;
+      transition: 0.5s;
+      border: 1px solid #173551;
+    }
+
+    button:hover {
+      background-color: white;
+      color: #173551;
+    }
+  }
+}

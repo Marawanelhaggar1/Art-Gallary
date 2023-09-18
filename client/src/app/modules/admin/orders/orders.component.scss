@@ -1,0 +1,16 @@
+.container-fluid {
+  .card {
+    .card-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .actions {
+        button {
+          display: block;
+          width: 150px;
+          margin: 1rem;
+        }
+      }
+    }
+  }
+}

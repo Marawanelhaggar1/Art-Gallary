@@ -1,4 +1,4 @@
-.container {
+.container-fluid {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,7 @@
   }
 
   .form {
-    max-width: fit-content;
+    max-width: 100%;
     text-align: center;
     margin: 2rem 0;
     padding: 2rem;
@@ -67,6 +67,16 @@
     border: 1px solid #173551;
     input {
       color: #173551;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    .form {
+      mat-form-field {
+        width: 100%;
+      }
     }
   }
 }

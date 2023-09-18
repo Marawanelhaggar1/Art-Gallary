@@ -10,6 +10,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ArtistsComponent } from './artists/artists.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CategoryServicesService } from 'src/app/core/services/category-services.service';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CategoryServicesService } from 'src/app/core/services/category-services
     CategoriesComponent,
     ArtistsComponent,
     OrdersComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     CommonModule,

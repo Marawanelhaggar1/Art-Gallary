@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {
   Order,
   OrderDetails,
   OrderDetailsAdmin,
 } from 'src/app/core/models/orders';
 import { OrdersService } from 'src/app/core/services/orders.service';
+import { OrderDetailsComponent } from '../order-details/order-details.component';
 
 @Component({
   selector: 'app-orders',
@@ -12,14 +14,16 @@ import { OrdersService } from 'src/app/core/services/orders.service';
   styleUrls: ['./orders.component.scss'],
 })
 export class OrdersComponent {
-  orders: Order[] = [];
+  orders: any[] = [];
   orderDetails: any[] = [];
   orderDetailsByOrder: OrderDetailsAdmin[] = [];
-  constructor(private _orderService: OrdersService) {}
+  constructor(
+    private _orderService: OrdersService,
+    private _dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.getAllOrders();
-    this.getAllOrderDetails();
   }
 
   getAllOrders() {
@@ -29,22 +33,20 @@ export class OrdersComponent {
     });
   }
 
-  getAllOrderDetails() {
-    return this._orderService.getAllOrdersDetails().subscribe((data) => {
-      this.orderDetails = [...data];
-      console.log(this.orderDetails);
+  openDialog(id: number) {
+    let dialogRef = this._dialog.open(OrderDetailsComponent, {
+      width: '330px',
+      height: '400px',
+      data: {
+        id: id,
+      },
     });
   }
 
-  getDetailsByOrderId(orderId: number) {
-    this.orderDetails.forEach((orderDetail) => {
-      if (
-        orderId == orderDetail.order_id &&
-        !this.orderDetailsByOrder.includes(orderDetail)
-      ) {
-        this.orderDetailsByOrder.push(orderDetail);
-      }
+  deleteOrder(id: number) {
+    return this._orderService.deleteOrder(id).subscribe((data) => {
+      console.log(data);
+      window.location.reload();
     });
-    console.log(this.orderDetailsByOrder);
   }
 }
